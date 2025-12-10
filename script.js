@@ -1,134 +1,265 @@
 // وقتی صفحه لود شد
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('سایت ایزوگام بارگذاری شد');
+    console.log('🚀 سایت ایزوگام احمدی جاما لود شد!');
     
-    // نمایش تاریخ
-    showDate();
+    // بارگذاری سبد خرید
+    loadCart();
+    
+    // نمایش تاریخ شمسی
+    showPersianDate();
+    
+    // انیمیشن اسکرول
+    initScrollAnimations();
+    
+    // ردیابی کلیک‌ها برای آنالیتیکس
+    initClickTracking();
 });
 
-// نمایش تاریخ امروز
-function showDate() {
-    const date = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const dateString = date.toLocaleDateString('fa-IR', options);
+// نمایش تاریخ شمسی
+function showPersianDate() {
+    const now = new Date();
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long'
+    };
     
-    const dateElement = document.createElement('div');
-    dateElement.style.cssText = `
-        text-align: center;
-        background: #dbeafe;
-        color: #1e40af;
-        padding: 10px;
-        margin: 10px 20px;
-        border-radius: 8px;
-        font-weight: bold;
-    `;
-    dateElement.textContent = '📅 ' + dateString;
-    
-    const footer = document.querySelector('footer');
-    if(footer) {
-        footer.prepend(dateElement);
+    try {
+        const persianDate = now.toLocaleDateString('fa-IR', options);
+        const dateElement = document.createElement('div');
+        dateElement.className = 'persian-date';
+        dateElement.innerHTML = `📅 ${persianDate}`;
+        dateElement.style.cssText = `
+            text-align: center;
+            padding: 12px;
+            background: linear-gradient(45deg, #2563eb, #1d4ed8);
+            color: white;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        `;
+        
+        const footer = document.querySelector('.footer .container');
+        if(footer) {
+            footer.prepend(dateElement);
+        }
+    } catch(e) {
+        console.log('تاریخ فارسی نمایش داده نشد');
     }
 }
 
-// خرید محصول
-function buyProduct(id) {
+// انیمیشن اسکرول
+function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.product-card, .section-title').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// ردیابی کلیک
+function initClickTracking() {
+    document.addEventListener('click', function(e) {
+        if(e.target.matches('.btn-buy, .btn-primary, .btn-secondary')) {
+            console.log('کلیک روی دکمه:', e.target.textContent);
+        }
+    });
+}
+
+// مدیریت سبد خرید
+let cart = [];
+
+function loadCart() {
+    const savedCart = localStorage.getItem('isogamCart');
+    if(savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCartCount();
+    }
+}
+
+function saveCart() {
+    localStorage.setItem('isogamCart', JSON.stringify(cart));
+}
+
+function addToCart(productId) {
     const products = {
-        1: 'ایزوگام دلیجان کد ۱۴۳',
-        2: 'ایزوگام مشهد صادراتی',
-        3: 'پشم شیشه دلیجان',
-        4: 'ایزوگام بام گستر'
+        1: { name: "ایزوگام دلیجان کد ۱۴۳", price: 140500 },
+        2: { name: "ایزوگام مشهد صادراتی", price: 154000 },
+        3: { name: "پشم شیشه دلیجان درجه ۱", price: 117000 },
+        4: { name: "ایزوگام بام گستر دلیجان", price: 135000 }
     };
     
-    const productName = products[id];
+    const product = products[productId];
+    const existingItem = cart.find(item => item.id === productId);
     
-    // نمایش پیام
-    showMessage(productName + ' به سبد خرید اضافه شد! ✅', 'success');
+    if(existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({
+            id: productId,
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+            date: new Date().toISOString()
+        });
+    }
     
-    // ذخیره در localStorage
-    let cart = JSON.parse(localStorage.getItem('isogamCart') || '[]');
-    cart.push({id: id, name: productName, time: new Date()});
-    localStorage.setItem('isogamCart', JSON.stringify(cart));
+    saveCart();
+    updateCartCount();
+    showNotification(`✅ ${product.name} به سبد خرید اضافه شد!`);
     
     // انیمیشن دکمه
     const button = event.target;
-    button.textContent = '✅ اضافه شد';
-    button.style.background = '#059669';
+    button.classList.add('animate-shake');
+    button.innerHTML = '✅ اضافه شد';
+    button.style.background = 'linear-gradient(45deg, #059669, #10b981)';
     
     setTimeout(() => {
-        button.textContent = 'خرید';
+        button.classList.remove('animate-shake');
+        button.innerHTML = '🛒 افزودن به سبد';
         button.style.background = '';
     }, 1500);
 }
 
-// نمایش پیام
-function showMessage(text, type) {
-    // حذف پیام قبلی
-    const oldMsg = document.querySelector('.message');
-    if(oldMsg) oldMsg.remove();
+function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cartBtn = document.querySelector('.btn-cart');
     
-    // ایجاد پیام جدید
-    const message = document.createElement('div');
-    message.className = 'message';
-    message.textContent = text;
+    if(cartBtn && totalItems > 0) {
+        cartBtn.innerHTML = `🛒 سبد خرید (${totalItems})`;
+    }
+}
+
+function showCart() {
+    const modal = document.getElementById('cartModal');
+    const cartItems = document.getElementById('cartItems');
     
-    message.style.cssText = `
+    if(cart.length === 0) {
+        cartItems.innerHTML = '<p style="text-align: center; color: #64748b;">سبد خرید خالی است</p>';
+    } else {
+        let html = '';
+        let total = 0;
+        
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            
+            html += `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                    <div>
+                        <strong>${item.name}</strong>
+                        <div style="font-size: 0.9rem; color: #64748b;">
+                            ${item.quantity} × ${item.price.toLocaleString()} تومان
+                        </div>
+                    </div>
+                    <div style="font-weight: bold; color: #059669;">
+                        ${itemTotal.toLocaleString()} تومان
+                    </div>
+                </div>
+            `;
+        });
+        
+        html += `
+            <div style="display: flex; justify-content: space-between; padding: 15px 0; border-top: 2px solid #2563eb; margin-top: 10px;">
+                <strong>مجموع:</strong>
+                <strong style="color: #2563eb; font-size: 1.2rem;">${total.toLocaleString()} تومان</strong>
+            </div>
+        `;
+        
+        cartItems.innerHTML = html;
+    }
+    
+    modal.style.display = 'flex';
+}
+
+function closeCart() {
+    document.getElementById('cartModal').style.display = 'none';
+}
+
+// کلیک خارج از مدال
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('cartModal');
+    if(e.target === modal) {
+        closeCart();
+    }
+});
+
+// نمایش نوتیفیکیشن
+function showNotification(message, type = 'success') {
+    // حذف نوتیفیکیشن قبلی
+    const oldNotif = document.querySelector('.notification');
+    if(oldNotif) oldNotif.remove();
+    
+    // ایجاد نوتیفیکیشن جدید
+    const notif = document.createElement('div');
+    notif.className = 'notification';
+    notif.textContent = message;
+    
+    notif.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
         background: ${type === 'success' ? '#10b981' : '#ef4444'};
         color: white;
         padding: 15px 25px;
-        border-radius: 8px;
-        z-index: 1000;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        animation: slideIn 0.3s;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        z-index: 3000;
+        animation: slideInRight 0.3s;
+        font-weight: 600;
+        max-width: 400px;
     `;
     
-    document.body.appendChild(message);
+    document.body.appendChild(notif);
     
     // حذف خودکار
     setTimeout(() => {
-        message.style.animation = 'slideOut 0.3s';
-        setTimeout(() => message.remove(), 300);
+        notif.style.animation = 'slideInRight 0.3s reverse forwards';
+        setTimeout(() => notif.remove(), 300);
     }, 3000);
-    
-    // اضافه کردن انیمیشن‌ها
-    addAnimationStyles();
 }
 
-// اضافه کردن استایل انیمیشن
-function addAnimationStyles() {
-    if(!document.querySelector('#animStyles')) {
-        const style = document.createElement('style');
-        style.id = 'animStyles';
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
+// فرم تماس
+function submitContactForm(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+    
+    // شبیه‌سازی ارسال
+    showNotification('📩 پیام شما با موفقیت ارسال شد! به زودی با شما تماس می‌گیریم.', 'success');
+    
+    // رزت فرم
+    setTimeout(() => {
+        form.reset();
+    }, 1000);
+    
+    return false;
+}
+
+// جستجو
+function searchProducts() {
+    const searchInput = document.getElementById('searchInput');
+    if(searchInput) {
+        const query = searchInput.value.trim();
+        if(query.length > 0) {
+            showNotification(`🔍 جستجو برای: ${query}`);
+            // در حالت واقعی، اینجا محصولات فیلتر می‌شوند
+        }
     }
 }
 
-// نمایش سبد خرید
-function showCart() {
-    const cart = JSON.parse(localStorage.getItem('isogamCart') || '[]');
-    
-    if(cart.length === 0) {
-        showMessage('سبد خرید خالی است!', 'info');
-        return;
+// کلید Enter برای جستجو
+document.addEventListener('keypress', function(e) {
+    if(e.key === 'Enter' && e.target.matches('#searchInput')) {
+        searchProducts();
     }
-    
-    let cartText = '🛒 سبد خرید شما:\n\n';
-    cart.forEach((item, index) => {
-        cartText += `${index + 1}. ${item.name}\n`;
-    });
-    
-    alert(cartText);
-}
+});
