@@ -1,134 +1,149 @@
-* {
+/* استایل اصلی */
+body {
+    font-family: Tahoma, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Tahoma', sans-serif;
-}
-
-body {
-    background: #f5f5f5;
+    background: #f0f8ff;
     color: #333;
-    line-height: 1.6;
 }
 
+/* هدر */
 header {
     background: #2563eb;
     color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 15px 20px;
+    text-align: center;
 }
 
-.logo h1 {
-    font-size: 1.5rem;
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav {
+    margin-top: 10px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    margin-right: 1rem;
-    padding: 0.5rem 1rem;
+    margin: 0 10px;
+    padding: 5px 10px;
     border-radius: 5px;
 }
 
-nav a.active, nav a:hover {
+nav a:hover {
     background: rgba(255,255,255,0.2);
 }
 
+/* بخش اصلی */
 .hero {
-    background: linear-gradient(45deg, #1d4ed8, #3b82f6);
+    background: linear-gradient(45deg, #1e40af, #3b82f6);
     color: white;
     text-align: center;
-    padding: 4rem 2rem;
-    margin: 1rem;
+    padding: 40px 20px;
+    margin: 20px;
     border-radius: 10px;
 }
 
 .hero h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
-.btn {
+.button {
     display: inline-block;
     background: white;
     color: #2563eb;
-    padding: 0.8rem 2rem;
+    padding: 10px 25px;
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
-    margin-top: 1rem;
+    margin-top: 15px;
 }
 
+/* محصولات */
 .products {
-    padding: 2rem;
+    padding: 20px;
+    text-align: center;
 }
 
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+.products h2 {
+    color: #1e293b;
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
 .product {
     background: white;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.product img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
+.product-img {
+    font-size: 50px;
+    margin-bottom: 15px;
 }
 
 .product h3 {
-    margin: 1rem 0;
     color: #1e293b;
+    font-size: 18px;
+    margin: 10px 0;
 }
 
-.product p {
-    color: #2563eb;
-    font-size: 1.2rem;
+.price {
+    color: #059669;
+    font-size: 22px;
     font-weight: bold;
-    margin: 1rem 0;
+    margin: 15px 0;
 }
 
 .product button {
     background: #10b981;
     color: white;
     border: none;
-    padding: 0.7rem 2rem;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
+    font-size: 16px;
 }
 
+.product button:hover {
+    background: #059669;
+}
+
+/* فوتر */
 footer {
     background: #1e293b;
     color: white;
     text-align: center;
-    padding: 2rem;
-    margin-top: 2rem;
+    padding: 20px;
+    margin-top: 40px;
 }
 
 /* موبایل */
 @media (max-width: 768px) {
-    header {
+    .product-list {
         flex-direction: column;
-        gap: 1rem;
+        align-items: center;
+    }
+    
+    .product {
+        width: 90%;
     }
     
     .hero h2 {
-        font-size: 1.5rem;
-    }
-    
-    .product-grid {
-        grid-template-columns: 1fr;
+        font-size: 22px;
     }
 }
