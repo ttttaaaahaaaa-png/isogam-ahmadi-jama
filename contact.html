@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>تماس با ما</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>📞 تماس با ما</h1>
+        <nav>
+            <a href="index.html">خانه</a>
+        </nav>
+    </header>
+
+    <main style="padding: 20px;">
+        <h2>راه‌های ارتباطی</h2>
+        
+        <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <p>📞 تلفن: <strong>۰۲۱-۱۲۳۴۵۶۷۸</strong></p>
+            <p>📱 موبایل: <strong>۰۹۱۲۳۴۵۶۷۸۹</strong></p>
+            <p>📧 ایمیل: <strong>info@ahmadi-jama.ir</strong></p>
+            <p>📍 آدرس: تهران، خیابان ولیعصر</p>
+        </div>
+        
+        <h3>فرم تماس</h3>
+        <form onsubmit="return submitForm()" style="background: white; padding: 20px; border-radius: 10px;">
+            <input type="text" placeholder="نام شما" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
+            <input type="tel" placeholder="شماره تماس" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
+            <textarea placeholder="پیام شما" rows="5" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+            <button type="submit" style="background: #2563eb; color: white; border: none; padding: 12px 30px; border-radius: 5px; cursor: pointer;">ارسال پیام</button>
+        </form>
+    </main>
+
+    <script>
+        function submitForm() {
+            alert('پیام شما ارسال شد! با شما تماس خواهیم گرفت.');
+            return false;
+        }
+    </script>
+</body>
+</html>
