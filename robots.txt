@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://isogam-ahmadi-jama.ir/sitemap.xml
+
+# Crawl-delay: 10
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
