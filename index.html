@@ -1,66 +1,207 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa-IR" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ایزوگام احمدی جاما</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- سئوی قوی -->
+    <title>ایزوگام احمدی جاما | فروش مستقیم ایزوگام دلیجان | قیمت کارخانه</title>
+    <meta name="description" content="تولید و فروش مستقیم ایزوگام دلیجان، پشم شیشه، عایق رطوبتی با کیفیت عالی، گارانتی ۱۰ ساله، ارسال به سراسر ایران">
+    <meta name="keywords" content="ایزوگام, ایزوگام دلیجان, قیمت ایزوگام, عایق رطوبتی, پشم شیشه, ایزوگام احمدی جاما, خرید ایزوگام">
+    <meta name="author" content="ایزوگام احمدی جاما">
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="googlefa2c2c375d122166">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="ایزوگام احمدی جاما | فروش مستقیم ایزوگام دلیجان">
+    <meta property="og:description" content="تولید و فروش مستقیم ایزوگام با کیفیت عالی">
+    <meta property="og:image" content="images/logo.png">
+    <meta property="og:url" content="https://isogam-ahmadi-jama.ir">
+    <meta property="og:type" content="website">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "ایزوگام احمدی جاما",
+        "description": "تولید و فروش مستقیم ایزوگام دلیجان",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "تهران",
+            "addressCountry": "IR"
+        },
+        "telephone": "+982112345678",
+        "priceRange": "$",
+        "openingHours": "Sa-Th 08:00-17:00"
+    }
+    </script>
+    
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.ico">
 </head>
 <body>
-    <header>
-        <h1>🏭 ایزوگام احمدی جاما</h1>
-        <nav>
-            <a href="index.html">خانه</a>
-            <a href="products.html">محصولات</a>
-            <a href="about.html">درباره</a>
-            <a href="contact.html">تماس</a>
-        </nav>
+    <!-- هدر با انیمیشن -->
+    <header class="header">
+        <div class="container">
+            <div class="logo animate-logo">
+                <h1>🏭 ایزوگام احمدی جاما</h1>
+                <p>تولید کننده ایزوگام دلیجان</p>
+            </div>
+            
+            <nav class="nav">
+                <a href="index.html" class="active">خانه</a>
+                <a href="products.html">محصولات</a>
+                <a href="about.html">درباره ما</a>
+                <a href="contact.html">تماس</a>
+                <button class="btn-cart" onclick="showCart()">🛒 سبد خرید</button>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <h2>فروش مستقیم ایزوگام دلیجان</h2>
-            <p>کیفیت عالی، قیمت مناسب</p>
-            <a href="products.html" class="button">مشاهده محصولات</a>
+    <!-- بخش اصلی با انیمیشن -->
+    <main class="main-content">
+        <section class="hero animate-slide-up">
+            <div class="hero-content">
+                <h2 class="hero-title animate-typing">ایزوگام <span class="highlight">درجه یک</span> دلیجان</h2>
+                <p class="hero-subtitle">کیفیت تضمینی، قیمت مستقیم کارخانه، گارانتی ۱۰ ساله</p>
+                <a href="products.html" class="btn btn-primary animate-pulse">🎯 مشاهده محصولات</a>
+            </div>
+            <div class="hero-image">
+                <img src="images/isogam1.jpg" alt="ایزوگام دلیجان" class="animate-float">
+            </div>
         </section>
 
-        <section class="products">
-            <h2>محصولات ویژه</h2>
-            <div class="product-list">
-                <div class="product">
-                    <div class="product-img">🛡️</div>
-                    <h3>ایزوگام دلیجان کد ۱۴۳</h3>
-                    <p class="price">۱۴۰,۵۰۰ تومان</p>
-                    <button onclick="buyProduct(1)">خرید</button>
+        <!-- محصولات ویژه -->
+        <section class="featured-products">
+            <h2 class="section-title animate-fade-in">محصولات <span class="highlight">پرفروش</span></h2>
+            <p class="section-subtitle">محصولات با کیفیت با قیمت مستقیم از کارخانه</p>
+            
+            <div class="products-grid">
+                <!-- محصول ۱ -->
+                <div class="product-card animate-card">
+                    <div class="product-image">
+                        <img src="images/isogam1.jpg" alt="ایزوگام دلیجان کد ۱۴۳" loading="lazy">
+                        <span class="product-badge">🔥 پرفروش</span>
+                    </div>
+                    <div class="product-content">
+                        <h3>ایزوگام سراپوش دلیجان کد ۱۴۳</h3>
+                        <div class="product-features">
+                            <span>✅ ضد آب</span>
+                            <span>✅ مقاوم UV</span>
+                            <span>✅ عمر ۱۵ ساله</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">۱۴۰,۵۰۰ تومان</span>
+                            <span class="old-price">۱۵۵,۰۰۰ تومان</span>
+                        </div>
+                        <button class="btn btn-buy" onclick="addToCart(1)">🛒 افزودن به سبد</button>
+                    </div>
                 </div>
-                
-                <div class="product">
-                    <div class="product-img">🔥</div>
-                    <h3>ایزوگام مشهد صادراتی</h3>
-                    <p class="price">۱۵۴,۰۰۰ تومان</p>
-                    <button onclick="buyProduct(2)">خرید</button>
+
+                <!-- محصول ۲ -->
+                <div class="product-card animate-card" style="animation-delay: 0.1s">
+                    <div class="product-image">
+                        <img src="images/isogam2.jpg" alt="ایزوگام مشهد صادراتی" loading="lazy">
+                        <span class="product-badge" style="background: #10b981">⭐ صادراتی</span>
+                    </div>
+                    <div class="product-content">
+                        <h3>ایزوگام شرق مشهد صادراتی</h3>
+                        <div class="product-features">
+                            <span>✅ گرید صادراتی</span>
+                            <span>✅ ضد حریق</span>
+                            <span>✅ نصب آسان</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">۱۵۴,۰۰۰ تومان</span>
+                        </div>
+                        <button class="btn btn-buy" onclick="addToCart(2)">🛒 افزودن به سبد</button>
+                    </div>
                 </div>
-                
-                <div class="product">
-                    <div class="product-img">🧱</div>
-                    <h3>پشم شیشه دلیجان</h3>
-                    <p class="price">۱۱۷,۰۰۰ تومان</p>
-                    <button onclick="buyProduct(3)">خرید</button>
+
+                <!-- محصول ۳ -->
+                <div class="product-card animate-card" style="animation-delay: 0.2s">
+                    <div class="product-image">
+                        <img src="images/isogam3.jpg" alt="پشم شیشه دلیجان" loading="lazy">
+                        <span class="product-badge" style="background: #3b82f6">🆕 جدید</span>
+                    </div>
+                    <div class="product-content">
+                        <h3>ایزوگام پشم شیشه دلیجان درجه ۱</h3>
+                        <div class="product-features">
+                            <span>✅ عایق حرارتی</span>
+                            <span>✅ سبک وزن</span>
+                            <span>✅ قابلیت برش</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">۱۱۷,۰۰۰ تومان</span>
+                            <span class="old-price">۱۳۰,۰۰۰ تومان</span>
+                        </div>
+                        <button class="btn btn-buy" onclick="addToCart(3)">🛒 افزودن به سبد</button>
+                    </div>
                 </div>
-                
-                <div class="product">
-                    <div class="product-img">🏠</div>
-                    <h3>ایزوگام بام گستر</h3>
-                    <p class="price">۱۳۵,۰۰۰ تومان</p>
-                    <button onclick="buyProduct(4)">خرید</button>
+
+                <!-- محصول ۴ -->
+                <div class="product-card animate-card" style="animation-delay: 0.3s">
+                    <div class="product-image">
+                        <img src="images/isogam4.jpg" alt="ایزوگام بام گستر" loading="lazy">
+                        <span class="product-badge" style="background: #f59e0b">🏆 گارانتی</span>
+                    </div>
+                    <div class="product-content">
+                        <h3>ایزوگام بام گستر دلیجان ثبت ۱۷</h3>
+                        <div class="product-features">
+                            <span>✅ گارانتی ۱۰ ساله</span>
+                            <span>✅ مقاوم در برابر باد</span>
+                            <span>✅ ضد جلبک</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">۱۳۵,۰۰۰ تومان</span>
+                        </div>
+                        <button class="btn btn-buy" onclick="addToCart(4)">🛒 افزودن به سبد</button>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- CTA -->
+        <section class="cta animate-slide-up">
+            <h2>📞 نیاز به مشاوره دارید؟</h2>
+            <p>کارشناسان ما آماده پاسخگویی و راهنمایی رایگان هستند</p>
+            <a href="contact.html" class="btn btn-secondary">تماس با ما</a>
+        </section>
     </main>
 
-    <footer>
-        <p>📞 تماس: ۰۲۱-۱۲۳۴۵۶۷۸</p>
-        <p>© ایزوگام احمدی جاما ۲۰۲۴</p>
+    <!-- فوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-section">
+                <h4>ایزوگام احمدی جاما</h4>
+                <p>تولید و فروش مستقیم ایزوگام با کیفیت عالی</p>
+            </div>
+            <div class="footer-section">
+                <h4>تماس با ما</h4>
+                <p>📞 ۰۲۱-۱۲۳۴۵۶۷۸</p>
+                <p>📱 ۰۹۱۲۳۴۵۶۷۸۹</p>
+                <p>📧 info@ahmadi-jama.ir</p>
+            </div>
+            <div class="footer-section">
+                <h4>ساعات کاری</h4>
+                <p>شنبه تا چهارشنبه: ۸ صبح تا ۵ عصر</p>
+                <p>پنجشنبه: ۸ صبح تا ۱ ظهر</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© ۲۰۲۴ ایزوگام احمدی جاما. تمام حقوق محفوظ است.</p>
+        </div>
     </footer>
+
+    <!-- مدال سبد خرید -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <h3>🛒 سبد خرید شما</h3>
+            <div id="cartItems">سبد خرید خالی است</div>
+            <button onclick="closeCart()" class="btn">بستن</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
